@@ -2,6 +2,8 @@ import time
 
 max_time = 0.250
 swapCount = 0
+iterationCount = 0
+comparisonCount = 0
 
 
 def quickSort(arr, display, speedInput, pauseBool):
@@ -36,30 +38,30 @@ def _partition(arr, display, speedInput, pauseBool, low, high):
         arr[pivot_pos], arr[high] = arr[high], arr[pivot_pos]
         swapCount += 1
 
-    display(arr, generateColorArray(low, high, pointer, pointer, len(arr), False), swapCount)
+    display(arr, generateColorArray(low, high, pointer, pointer, len(arr), False), swapCount, iterationCount, comparisonCount)
     time.sleep(max_time - (speedInput() * max_time / 100))
 
     for j in range(low, high):
 
         if arr[j] < pivot:
-            display(arr, generateColorArray(low, high, pointer, j, len(arr), True), swapCount)
+            display(arr, generateColorArray(low, high, pointer, j, len(arr), True), swapCount, iterationCount, comparisonCount)
             time.sleep(max_time - (speedInput() * max_time / 100))
 
             arr[j], arr[pointer] = arr[pointer], arr[j]
             pointer += 1
             swapCount += 1
 
-        display(arr, generateColorArray(low, high, pointer, j, len(arr), False), swapCount)
+        display(arr, generateColorArray(low, high, pointer, j, len(arr), False), swapCount, iterationCount, comparisonCount)
         time.sleep(max_time - (speedInput() * max_time / 100))
 
-    display(arr, generateColorArray(low, high, pointer, high, len(arr), False), swapCount)
+    display(arr, generateColorArray(low, high, pointer, high, len(arr), False), swapCount, iterationCount, comparisonCount)
     time.sleep(max_time - (speedInput() * max_time / 100))
 
     arr[high], arr[pointer] = arr[pointer], arr[high]
     swapCount += 1
 
     colorArray = ['green'] * len(arr)
-    display(arr, colorArray, swapCount)
+    display(arr, colorArray, swapCount, iterationCount, comparisonCount)
 
     return pointer
 

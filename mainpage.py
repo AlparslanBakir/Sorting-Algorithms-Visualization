@@ -1,10 +1,10 @@
-
 #---start import section-------------------
 import time
 import math
 import random
 
-from tkinter import Canvas, Frame, StringVar, Tk, Label, Button, Scale, HORIZONTAL
+
+from tkinter import Canvas, Frame, StringVar, Tk, Label, Button, Scale, Entry, HORIZONTAL
 from tkinter import ttk
 
 from mergesort import mergeSort
@@ -19,8 +19,8 @@ from heapsort import heapSort
 
 root = Tk()
 root.title('Sorting Algorithms Visualizer')
-root_width = root.winfo_screenwidth()-20
-root_height = root.winfo_screenheight()-20
+root_width = root.winfo_screenwidth()-25
+root_height = root.winfo_screenheight()-25
 root.geometry(f"{root_width}x{root_height}")
 root.maxsize(root_width,root_height)   #(width,height)
 root.config(bg='black')
@@ -37,7 +37,6 @@ selectedCharts = StringVar()
 pauseBool = False
 arr = []
 #-----------------------------
-
 def generateRandomArray():
     #random array of non-repeating n elements
     global arr
@@ -48,13 +47,26 @@ def generateRandomArray():
     arrayColor = ['red']  * n
 
     swapCount = 0
-    lookup[chartCombo.get()](arr,arrayColor,swapCount)
+    comparisonCount = 0
+    iterationCount = 0
+    lookup[chartCombo.get()](arr,arrayColor,swapCount, iterationCount,comparisonCount)
+
+def generateManualArray():
+    global arr
+    arr_str = inputEntry.get()
+    arr = [int(num) for num in arr_str.split(',')]
+    arrayColor = ['red']  * len(arr)
+
+    swapCount = 0
+    comparisonCount = 0
+    iterationCount = 0
+    lookup[chartCombo.get()](arr,arrayColor,swapCount, iterationCount,comparisonCount)
 
 def normalizeArray(arr):
     m = max(arr)
     return [i / m for i in arr]
 
-def displayScatter(arr,arrayColor,opCount):
+def displayScatter(arr,arrayColor,swapCount, iterationCount, comparisonCount):
     outputCanvas.delete('all')
     n = len(arr)
 
@@ -73,13 +85,14 @@ def displayScatter(arr,arrayColor,opCount):
         outputCanvas.create_text(x, y - 15, text=str(arr[i]), fill='black', font=('Arial', 10))
 
 
-    swapCountLabel = Label(outputCanvas,text = '#Swap Count : '+str(opCount),fg = 'white',bg = 'black',font = ('Comic Sans MS',12))
-    outputCanvas.create_window(80,20,window = swapCountLabel)
+    countLabel = Label(outputCanvas,text = 'İterasyon : '+str(iterationCount)+'\n Değiştirme : '+ str(swapCount)+'\n Karşılaştırma : '+ str(comparisonCount),
+                       fg = 'white',bg = 'black',font = ('Comic Sans MS',12))
+    outputCanvas.create_window(80,80,window = countLabel)
     outputCanvas.create_line(initialspace, outputCanvasHeight, outputCanvasWidth, outputCanvasHeight, fill='black', width=1)
 
     root.update()
 
-def displayArray(arr, arrayColor, opCount):
+def displayArray(arr,arrayColor,swapCount, iterationCount, comparisonCount):
     outputCanvas.delete('all')
     n = len(arr)
 
@@ -103,16 +116,15 @@ def displayArray(arr, arrayColor, opCount):
         outputCanvas.create_rectangle(x0, y0, x1, y1, fill=arrayColor[i])
         outputCanvas.create_text((x0 + x1) / 2, y0 - 15, text=str(arr[i]), fill='black', font=('Arial', 10))
 
-    swapCountLabel = Label(outputCanvas, text='#Swap Count : ' + str(opCount), fg='white', bg='black',
-                           font=('Comic Sans MS', 12))
-    outputCanvas.create_window(80, 20, window=swapCountLabel)
-    outputCanvas.create_line(initialspace, outputCanvasHeight, outputCanvasWidth, outputCanvasHeight, fill='black',
-                             width=1)
+    countLabel = Label(outputCanvas,text = '#Değiştirme : '+str(swapCount)+'\n İterasyon : '+ str(iterationCount)+'\n Karşılaştırma : '+ str(comparisonCount),
+                       fg = 'white',bg = 'black',font = ('Comic Sans MS',12))
+    outputCanvas.create_window(80,80,window = countLabel)
+    outputCanvas.create_line(initialspace, outputCanvasHeight, outputCanvasWidth, outputCanvasHeight, fill='black', width=1)
 
     root.update()
 
 
-def displayStem(arr, arrayColor, opCount):
+def displayStem(arr,arrayColor,swapCount, iterationCount, comparisonCount):
     outputCanvas.delete('all')
     n = len(arr)
 
@@ -131,12 +143,13 @@ def displayStem(arr, arrayColor, opCount):
         outputCanvas.create_oval(x - 5, y - 5, x + 5, y + 5, fill=arrayColor[i])
         outputCanvas.create_text(x, y - 15, text=str(arr[i]), fill='black', font=('Arial', 10))
 
-    swapCountLabel = Label(outputCanvas, text='#Swap Count : ' + str(opCount), fg='white', bg='black',
-                           font=('Comic Sans MS', 12))
-    outputCanvas.create_window(80, 20, window=swapCountLabel)
+    countLabel = Label(outputCanvas,text = 'İterasyon : '+str(iterationCount)+'\n Değiştirme : '+ str(swapCount)+'\n Karşılaştırma : '+ str(comparisonCount),
+                       fg = 'white',bg = 'black',font = ('Comic Sans MS',12))
+    outputCanvas.create_window(80,80,window = countLabel)
     outputCanvas.create_line(initialspace, outputCanvasHeight, outputCanvasWidth, outputCanvasHeight, fill='black', width=1)
 
     root.update()
+
 
 
 # Map from string to sorting function
@@ -154,14 +167,15 @@ lookup = {
 
 
 def startSort():
-    global arr
+    global arr, pauseBool
+    pauseBool = False
     fn = lookup[algoCombo.get()]
     fn(arr, lookup[chartCombo.get()], sortSpeed.get, pauseBool)
 
 
 #----User Interface Section---------------------------------------------------------------------------------------------
 inputFrame = Frame(root, height=1500, bg='green')
-inputFrame.grid(row=0, column=0, padx=5, pady=10, sticky='w')
+inputFrame.grid(row=0, column=0, padx=0, pady=10, sticky='w')
 inputFrame.columnconfigure(0, weight=1, minsize=75)
 inputFrame.columnconfigure(1, weight=1, minsize=75)
 inputFrame.columnconfigure(2, weight=1, minsize=75)
@@ -170,7 +184,7 @@ inputFrame.rowconfigure(1, weight=1, minsize=50)
 inputFrame.rowconfigure(2, weight=1, minsize=50)
 inputFrame.rowconfigure(3, weight=1, minsize=50)
 
-outputCanvas = Canvas(root, bg='#99ffff')
+outputCanvas = Canvas(root, bg='#c8dedb')
 outputCanvas.grid(row=0, column=1, columnspan=2, padx=10, pady=25, sticky='nsew')
 root.columnconfigure(1, weight=1, minsize=75)
 root.columnconfigure(2, weight=0, minsize=75)
@@ -191,18 +205,24 @@ chartCombo = ttk.Combobox(inputFrame, values=allCharts, width=10, font=('Comic S
 chartCombo.grid(row=1, column=1, padx=1, pady=5)
 chartCombo.current()
 
+sortSpeed = Scale(inputFrame, from_=1, to=100, resolution=0.1, length=400, width=15, orient=HORIZONTAL, label='Sorting Speed [s]', font=('Comic Sans MS', 10))
+sortSpeed.grid(row=2, column=0, padx=50, pady=5, columnspan=2, sticky='nsew')
 
 dataSize = Scale(inputFrame, from_=3, to=100, resolution=1, length=400, width=15, orient=HORIZONTAL, label='Data Size [n]', font=('Comic Sans MS', 10))
-dataSize.grid(row=2, column=0, padx=30, pady=5, columnspan=2, sticky='nsew')
+dataSize.grid(row=3, column=0, padx=50, pady=5, columnspan=2, sticky='nsew')
 
-sortSpeed = Scale(inputFrame, from_=1, to=100, resolution=0.1, length=400, width=15, orient=HORIZONTAL, label='Sorting Speed [s]', font=('Comic Sans MS', 10))
-sortSpeed.grid(row=3, column=0, padx=30, pady=5, columnspan=2, sticky='nsew')
+generateRandom = Button(inputFrame, text='Generate Random', fg='black', bg='#ff0000', height=1, width=20, font=('Comic Sans MS', 14), command=generateRandomArray)
+generateRandom.grid(row=4, column=0, padx=10, pady=5, columnspan=2)
 
-generate = Button(inputFrame, text='Generate', fg='black', bg='#ff0000', height=1, width=10, font=('Comic Sans MS', 14), command=generateRandomArray)
-generate.grid(row=4, column=0, padx=5, pady=5)
+inputEntry = Entry(inputFrame, width=40, font=('Comic Sans MS', 14))
+inputEntry.grid(row=5, column=0, columnspan=2, padx=50, pady=5)
+
+generate = Button(inputFrame, text='Generate Manual', fg='black', bg='#ff0000', height=1, width=20, font=('Comic Sans MS', 14), command=generateManualArray)
+generate.grid(row=6, column=0, padx=5, pady=5, columnspan=2)
 
 play = Button(inputFrame, text='Play', fg='black', bg='#00ff00', height=1, width=10, font=('Comic Sans MS', 14), command=startSort)
-play.grid(row=4, column=1, padx=5, pady=5)
+play.grid(row=7, column=0, padx=5, pady=5, columnspan=2)
+
 
 #--output frame------------------------------------------------------
 

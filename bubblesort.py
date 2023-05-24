@@ -1,15 +1,18 @@
 import time
-
+import keyboard
 max_time = 0.250
 # compares neighbouring elements in the array
 def bubbleSort(arr, display, speedInput, pauseBool):
 
     swapCount = 0
+    comparisonCount = 0
+    iterationCount = 0
     N = len(arr)
     for i in range(N):
         swapped = False
 
         for j in range(N - 1):
+            comparisonCount += 1
             if arr[j] > arr[j + 1]:
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
                 swapCount += 1
@@ -19,17 +22,17 @@ def bubbleSort(arr, display, speedInput, pauseBool):
                 if i:
                     colorArray[-i:] = ['green'] * i
 
-                display(arr, colorArray, swapCount)
+                display(arr, colorArray, swapCount, iterationCount, comparisonCount)
                 time.sleep(max_time - (speedInput() * max_time / 100))
                 swapped = True
-
+        iterationCount += 1        
         if not swapped:
             break
 
     colorArray = ['green'] * N
-    display(arr, colorArray, swapCount)
+    display(arr, colorArray, swapCount, iterationCount, comparisonCount)
     print("Sorted arr : ",arr)
-
+        
 
 
 # arr = [2, 10,11,25,13,78,1,7,80]
