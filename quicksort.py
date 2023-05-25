@@ -61,6 +61,9 @@ def _partition(arr, display, speedInput, pauseBool, low, high):
 
     arr[high], arr[pointer] = arr[pointer], arr[high]
     swapCount += 1
+
+    colorArray = ['#539165'] * len(arr)
+    display(arr, colorArray, swapCount, iterationCount, comparisonCount)
     
 
     colorArray = ['green'] * len(arr)
@@ -70,13 +73,13 @@ def _partition(arr, display, speedInput, pauseBool, low, high):
 
 
 def generateColorArray(low, high, pointer, curr_ind, n, swapping):
-    colorArray = ['#996633'] * n
-    colorArray[low:high + 1] = ['yellow'] * (high - low + 1)
-    colorArray[pointer] = 'black'
-    colorArray[high] = 'red'
-    colorArray[curr_ind] = 'blue'
+    colorArray = ['#94B49F'] * n
+    colorArray[low:high + 1] = ['#F6F49D'] * (high - low + 1)
+    colorArray[pointer] = '#9BA4B5'
+    colorArray[high] = '#E06469'
+    colorArray[curr_ind] = '#70A1D7'
 
     if swapping:
-        colorArray[curr_ind] = 'green'
-        colorArray[pointer] = 'green'
+        colorArray[curr_ind] = '#539165'
+        colorArray[pointer] = '#539165'
     return colorArray

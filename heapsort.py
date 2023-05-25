@@ -14,10 +14,10 @@ def heapSort(arr, display, speedInput, pauseBool):
             if arr[heap_length] > arr[parent]:
                 arr[parent], arr[heap_length] = arr[heap_length], arr[parent]
                 swapCount += 1
-                colorArray = ['red'] * N
-                colorArray[parent] = ['blue']
-                colorArray[heap_length] = ['yellow']
-                display(arr, colorArray, swapCount, comparisonCount)
+                colorArray = ['#E06469'] * N
+                colorArray[parent] = ['#70A1D7']
+                colorArray[heap_length] = ['#F6F49D']
+                display(arr, colorArray, swapCount, iterationCount, comparisonCount)
                 time.sleep(max_time - (speedInput() * max_time / 100))
             heap_length = parent
             
@@ -29,6 +29,10 @@ def heapSort(arr, display, speedInput, pauseBool):
         colorArray[0] = 'blue'
         colorArray[i:] = ['green'] * (N - i)
         display(arr, colorArray, swapCount, comparisonCount)
+        colorArray = ['#E06469'] * N
+        colorArray[0] = '#70A1D7'
+        colorArray[i:] = ['#539165'] * (N - i)
+        display(arr, colorArray, swapCount, iterationCount, comparisonCount)
         time.sleep(max_time - (speedInput() * max_time / 100))
 
         parent = 0
@@ -41,6 +45,9 @@ def heapSort(arr, display, speedInput, pauseBool):
             if highest != parent:
                 arr[highest], arr[parent] = arr[parent], arr[highest]
                 swapCount += 1
+                colorArray[parent] = '#70A1D7'
+                colorArray[highest] = '#F6F49D'
+                display(arr, colorArray, swapCount, iterationCount, comparisonCount)
                 colorArray[parent] = 'blue'
                 colorArray[highest] = 'yellow'
                 display(arr, colorArray, swapCount, comparisonCount)
@@ -50,6 +57,8 @@ def heapSort(arr, display, speedInput, pauseBool):
             parent = highest
             comparisonCount +=1
 
+    colorArray = ['#539165'] * N
+    display(arr, colorArray, swapCount, iterationCount, comparisonCount)
     colorArray = ['green'] * N
     display(arr, colorArray, swapCount, comparisonCount)
     print("Sorted arr : ", arr)

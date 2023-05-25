@@ -21,6 +21,9 @@ def _merge_sort(arr, display, speedInput, pauseBool, start, end, comparisonCount
 
 def _merge(arr, display, speedInput, pauseBool, start, mid, end, comparisonCount, swapCount):
     N = len(arr)
+    #--highlight the left and the right parts of the array
+    colorArray = ['#E06469'] * N
+    colorCoords = ((start, mid + 1, '#FFFDB7'), (mid + 1, end + 1, '#70A1D7'))
     colorArray = ['red'] * N
     colorCoords = ((start, mid + 1, '#ffff00'), (mid + 1, end + 1, '#5200cc'))
     for lower, upper, color in colorCoords:
@@ -44,6 +47,9 @@ def _merge(arr, display, speedInput, pauseBool, start, mid, end, comparisonCount
             j += 1
             swapCount += 1  # Increment swap count
 
+        swapCount += 1
+        colorArray[start:k] = ['#539165'] * (k - start)
+        display(arr, colorArray, swapCount, iterationCount, comparisonCount)
         colorArray[start:k] = ['green'] * (k - start)
         display(arr, colorArray, swapCount, comparisonCount)
         time.sleep(max_time - (speedInput() * max_time / 100))
@@ -54,6 +60,9 @@ def _merge(arr, display, speedInput, pauseBool, start, mid, end, comparisonCount
         arr[k] = arrL[i]
         i += 1
         k += 1
+        swapCount += 1
+        colorArray[start:k] = ['#539165'] * (k - start)
+        display(arr, colorArray, swapCount, iterationCount, comparisonCount)
         swapCount += 1  # Increment swap count
         colorArray[start:k] = ['green'] * (k - start)
         display(arr, colorArray, swapCount, comparisonCount)
@@ -63,6 +72,9 @@ def _merge(arr, display, speedInput, pauseBool, start, mid, end, comparisonCount
         arr[k] = arrR[j]
         j += 1
         k += 1
+        swapCount += 1
+        colorArray[start:k] = ['#539165'] * (k - start)
+        display(arr, colorArray, swapCount, iterationCount, comparisonCount)
         swapCount += 1  # Increment swap count
         colorArray[start:k] = ['green'] * (k - start)
         display(arr, colorArray, swapCount, comparisonCount)
