@@ -13,8 +13,8 @@ def insertionSort(arr, display, speedInput, pauseBool):
         key = arr[i]
         j = i - 1
 
-        colorArray = ['red'] * N
-        colorArray[:i] = ['green'] * i
+        colorArray = ['#E06469'] * N
+        colorArray[:i] = ['#539165'] * i
         display(arr, colorArray, swapCount, iterationCount, comparisonCount)
         time.sleep(max_time - (speedInput() * max_time / 100))
         iterationCount += 1
@@ -24,21 +24,21 @@ def insertionSort(arr, display, speedInput, pauseBool):
             j -= 1
             swapCount += 1
 
-            colorArray = ['red'] * N
-            colorArray[j + 1] = 'blue'
+            colorArray = ['#E06469'] * N
+            colorArray[j + 1] = '#70A1D7'
             display(arr, colorArray, swapCount, iterationCount, comparisonCount)
             time.sleep(max_time - (speedInput() * max_time / 100))
             comparisonCount += 1
 
         arr[j + 1] = key
 
-        colorArray = ['red'] * N
-        colorArray[:i + 1] = ['green'] * (i + 1)
+        colorArray = ['#E06469'] * N
+        colorArray[:i + 1] = ['#539165'] * (i + 1)
         display(arr, colorArray, swapCount, iterationCount, comparisonCount)
         time.sleep(max_time - (speedInput() * max_time / 100))
         iterationCount += 1
 
-    colorArray = ['green'] * N
+    colorArray = ['#539165'] * N
     display(arr, colorArray, swapCount, iterationCount, comparisonCount)
     print("Sorted arr:", arr)
 

@@ -16,11 +16,11 @@ def bubbleSort(arr, display, speedInput, pauseBool):
             if arr[j] > arr[j + 1]:
                 arr[j], arr[j + 1] = arr[j + 1], arr[j]
                 swapCount += 1
-                colorArray = ['red'] * N
-                colorArray[j] = 'blue'
-                colorArray[j + 1] = 'blue'
+                colorArray = ['#E06469'] * N
+                colorArray[j] = '#70A1D7'
+                colorArray[j + 1] = '#70A1D7'
                 if i:
-                    colorArray[-i:] = ['green'] * i
+                    colorArray[-i:] = ['#539165'] * i
 
                 display(arr, colorArray, swapCount, iterationCount, comparisonCount)
                 time.sleep(max_time - (speedInput() * max_time / 100))
@@ -29,7 +29,7 @@ def bubbleSort(arr, display, speedInput, pauseBool):
         if not swapped:
             break
 
-    colorArray = ['green'] * N
+    colorArray = ['#539165'] * N
     display(arr, colorArray, swapCount, iterationCount, comparisonCount)
     print("Sorted arr : ",arr)
         
