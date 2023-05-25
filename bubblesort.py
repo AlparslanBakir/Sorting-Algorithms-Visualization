@@ -6,7 +6,7 @@ def bubbleSort(arr, display, speedInput, pauseBool):
 
     swapCount = 0
     comparisonCount = 0
-    iterationCount = 0
+    
     N = len(arr)
     for i in range(N):
         swapped = False
@@ -22,15 +22,15 @@ def bubbleSort(arr, display, speedInput, pauseBool):
                 if i:
                     colorArray[-i:] = ['green'] * i
 
-                display(arr, colorArray, swapCount, iterationCount, comparisonCount)
+                display(arr, colorArray, swapCount,  comparisonCount)
                 time.sleep(max_time - (speedInput() * max_time / 100))
                 swapped = True
-        iterationCount += 1        
+        
         if not swapped:
             break
 
     colorArray = ['green'] * N
-    display(arr, colorArray, swapCount, iterationCount, comparisonCount)
+    display(arr, colorArray, swapCount,  comparisonCount)
     print("Sorted arr : ",arr)
         
 

@@ -2,12 +2,12 @@ import time
 
 max_time = 0.250
 swapCount = 0
-iterationCount = 0
+
 comparisonCount = 0
 
 
 def quickSort(arr, display, speedInput, pauseBool):
-    global swapCount
+    global swapCount, comparisonCount
     swapCount = 0
     low, high = 0, len(arr) - 1
     _quick_sort(arr, display, speedInput, pauseBool, low, high)
@@ -25,7 +25,7 @@ def _quick_sort(arr, display, speedInput, pauseBool, low, high):
 ##--taking last element as pivot
 ##--separates smaller elements to the left and larger to the right
 def _partition(arr, display, speedInput, pauseBool, low, high):
-    global swapCount
+    global swapCount, comparisonCount
 
     pointer = low
     count = high - low
@@ -37,31 +37,34 @@ def _partition(arr, display, speedInput, pauseBool, low, high):
     if pivot_pos != high:
         arr[pivot_pos], arr[high] = arr[high], arr[pivot_pos]
         swapCount += 1
+        
 
-    display(arr, generateColorArray(low, high, pointer, pointer, len(arr), False), swapCount, iterationCount, comparisonCount)
+    display(arr, generateColorArray(low, high, pointer, pointer, len(arr), False), swapCount, comparisonCount)
     time.sleep(max_time - (speedInput() * max_time / 100))
 
     for j in range(low, high):
+        comparisonCount += 1
 
         if arr[j] < pivot:
-            display(arr, generateColorArray(low, high, pointer, j, len(arr), True), swapCount, iterationCount, comparisonCount)
+            display(arr, generateColorArray(low, high, pointer, j, len(arr), True), swapCount, comparisonCount)
             time.sleep(max_time - (speedInput() * max_time / 100))
 
             arr[j], arr[pointer] = arr[pointer], arr[j]
             pointer += 1
             swapCount += 1
 
-        display(arr, generateColorArray(low, high, pointer, j, len(arr), False), swapCount, iterationCount, comparisonCount)
+        display(arr, generateColorArray(low, high, pointer, j, len(arr), False), swapCount, comparisonCount)
         time.sleep(max_time - (speedInput() * max_time / 100))
 
-    display(arr, generateColorArray(low, high, pointer, high, len(arr), False), swapCount, iterationCount, comparisonCount)
+    display(arr, generateColorArray(low, high, pointer, high, len(arr), False), swapCount, comparisonCount)
     time.sleep(max_time - (speedInput() * max_time / 100))
 
     arr[high], arr[pointer] = arr[pointer], arr[high]
     swapCount += 1
+    
 
     colorArray = ['green'] * len(arr)
-    display(arr, colorArray, swapCount, iterationCount, comparisonCount)
+    display(arr, colorArray, swapCount, comparisonCount)
 
     return pointer
 
