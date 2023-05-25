@@ -63,10 +63,10 @@ def _partition(arr, display, speedInput, pauseBool, low, high):
     swapCount += 1
 
     colorArray = ['#539165'] * len(arr)
-    display(arr, colorArray, swapCount, iterationCount, comparisonCount)
+    display(arr, colorArray, swapCount,   comparisonCount)
     
 
-    colorArray = ['green'] * len(arr)
+    colorArray = ['#539165'] * len(arr)
     display(arr, colorArray, swapCount, comparisonCount)
 
     return pointer

@@ -30,7 +30,7 @@ def bubbleSort(arr, display, speedInput, pauseBool):
             break
 
     colorArray = ['#539165'] * N
-    display(arr, colorArray, swapCount, iterationCount, comparisonCount)
+    display(arr, colorArray, swapCount,   comparisonCount)
     print("Sorted arr : ",arr)
         
 

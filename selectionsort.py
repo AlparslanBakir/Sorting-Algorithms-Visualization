@@ -29,7 +29,7 @@ def selectionSort(arr, display, speedInput, pauseBool):
         # colorArray = ['green' if x<=i else 'red' for x in range(len(arr))]
         colorArray = ['#E06469'] * N
         colorArray[0:i + 1] = ['#539165'] * (i + 1)
-        display(arr, colorArray, swapCount, iterationCount, comparisonCount)
+        display(arr, colorArray, swapCount,  comparisonCount)
         colorArray = ['red'] * N
         colorArray[0:i + 1] = ['green'] * (i + 1)
         display(arr, colorArray, swapCount,   comparisonCount)
@@ -38,5 +38,5 @@ def selectionSort(arr, display, speedInput, pauseBool):
     colorArray = ['green'] * N
     display(arr, colorArray, swapCount,   comparisonCount)
     colorArray = ['#539165'] * N
-    display(arr, colorArray, swapCount, iterationCount, comparisonCount)
+    display(arr, colorArray, swapCount,  comparisonCount)
     print("Sorted arr : ", arr)

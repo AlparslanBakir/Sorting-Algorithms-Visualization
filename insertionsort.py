@@ -14,7 +14,7 @@ def insertionSort(arr, display, speedInput, pauseBool):
 
         colorArray = ['#E06469'] * N
         colorArray[:i] = ['#539165'] * i
-        display(arr, colorArray, swapCount, iterationCount, comparisonCount)
+        display(arr, colorArray, swapCount,   comparisonCount)
         time.sleep(max_time - (speedInput() * max_time / 100))
 
         while j >= 0 and arr[j] > key:
@@ -24,7 +24,7 @@ def insertionSort(arr, display, speedInput, pauseBool):
 
             colorArray = ['#E06469'] * N
             colorArray[j + 1] = '#70A1D7'
-            display(arr, colorArray, swapCount, iterationCount, comparisonCount)
+            display(arr, colorArray, swapCount,   comparisonCount)
             time.sleep(max_time - (speedInput() * max_time / 100))
             comparisonCount += 1
 
@@ -32,7 +32,7 @@ def insertionSort(arr, display, speedInput, pauseBool):
 
         colorArray = ['#E06469'] * N
         colorArray[:i + 1] = ['#539165'] * (i + 1)
-        display(arr, colorArray, swapCount, iterationCount, comparisonCount)
+        display(arr, colorArray, swapCount,   comparisonCount)
         time.sleep(max_time - (speedInput() * max_time / 100))
 
     colorArray = ['#539165'] * N
