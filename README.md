@@ -1,5 +1,5 @@
-## Sorting-Algorithms-Visualization
-## Sıralama Algoritmaları Görselleştirici
+## Sorting Algorithms Visualizer
+### Sıralama Algoritmaları Görselleştirici
 -tkinter kütüphanesini yüklemek için `pip install tkinter`
 
 -çalıştırmak için `python mainage.py`
