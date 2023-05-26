@@ -13,3 +13,4 @@ işleyişi ve farklılıkları kavramasına yardımcı olmayı hedefler.
 
 ## Arayüz
 ![gorsel1](gui.png)
+###
