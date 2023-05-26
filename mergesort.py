@@ -24,7 +24,7 @@ def _merge(arr, display, speedInput, pauseBool, start, mid, end, comparisonCount
     #--highlight the left and the right parts of the array
     colorArray = ['#E06469'] * N
     colorCoords = ((start, mid + 1, '#FFFDB7'), (mid + 1, end + 1, '#70A1D7'))
-    colorArray = ['red'] * N
+    colorArray = ['#E06469'] * N
     colorCoords = ((start, mid + 1, '#ffff00'), (mid + 1, end + 1, '#5200cc'))
     for lower, upper, color in colorCoords:
         colorArray[lower:upper] = [color] * (upper - lower)
@@ -50,7 +50,7 @@ def _merge(arr, display, speedInput, pauseBool, start, mid, end, comparisonCount
         swapCount += 1
         colorArray[start:k] = ['#539165'] * (k - start)
         display(arr, colorArray, swapCount,   comparisonCount)
-        colorArray[start:k] = ['green'] * (k - start)
+        colorArray[start:k] = ['#539165'] * (k - start)
         display(arr, colorArray, swapCount, comparisonCount)
         time.sleep(max_time - (speedInput() * max_time / 100))
 
@@ -64,7 +64,7 @@ def _merge(arr, display, speedInput, pauseBool, start, mid, end, comparisonCount
         colorArray[start:k] = ['#539165'] * (k - start)
         display(arr, colorArray, swapCount,   comparisonCount)
         swapCount += 1  # Increment swap count
-        colorArray[start:k] = ['green'] * (k - start)
+        colorArray[start:k] = ['#539165'] * (k - start)
         display(arr, colorArray, swapCount, comparisonCount)
         time.sleep(max_time - (speedInput() * max_time / 100))
 
@@ -76,7 +76,7 @@ def _merge(arr, display, speedInput, pauseBool, start, mid, end, comparisonCount
         colorArray[start:k] = ['#539165'] * (k - start)
         display(arr, colorArray, swapCount,   comparisonCount)
         swapCount += 1  # Increment swap count
-        colorArray[start:k] = ['green'] * (k - start)
+        colorArray[start:k] = ['#539165'] * (k - start)
         display(arr, colorArray, swapCount, comparisonCount)
         time.sleep(max_time - (speedInput() * max_time / 100))
 

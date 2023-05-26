@@ -25,9 +25,9 @@ def heapSort(arr, display, speedInput, pauseBool):
     for i in reversed(range(N)):
         arr[i], arr[0] = arr[0], arr[i]
         swapCount += 1
-        colorArray = ['red'] * N
-        colorArray[0] = 'blue'
-        colorArray[i:] = ['green'] * (N - i)
+        colorArray = ['#E06469'] * N
+        colorArray[0] = '#70A1D7'
+        colorArray[i:] = ['#539165'] * (N - i)
         display(arr, colorArray, swapCount, comparisonCount)
         colorArray = ['#E06469'] * N
         colorArray[0] = '#70A1D7'
@@ -48,8 +48,8 @@ def heapSort(arr, display, speedInput, pauseBool):
                 colorArray[parent] = '#70A1D7'
                 colorArray[highest] = '#F6F49D'
                 display(arr, colorArray, swapCount,   comparisonCount)
-                colorArray[parent] = 'blue'
-                colorArray[highest] = 'yellow'
+                colorArray[parent] = '#70A1D7'
+                colorArray[highest] = '#F6F49D'
                 display(arr, colorArray, swapCount, comparisonCount)
                 time.sleep(max_time - (speedInput() * max_time / 100))
             else:
@@ -59,6 +59,6 @@ def heapSort(arr, display, speedInput, pauseBool):
 
     colorArray = ['#539165'] * N
     display(arr, colorArray, swapCount,   comparisonCount)
-    colorArray = ['green'] * N
+    colorArray = ['#539165'] * N
     display(arr, colorArray, swapCount, comparisonCount)
     print("Sorted arr : ", arr)

@@ -30,12 +30,12 @@ def selectionSort(arr, display, speedInput, pauseBool):
         colorArray = ['#E06469'] * N
         colorArray[0:i + 1] = ['#539165'] * (i + 1)
         display(arr, colorArray, swapCount,  comparisonCount)
-        colorArray = ['red'] * N
-        colorArray[0:i + 1] = ['green'] * (i + 1)
+        colorArray = ['#E06469'] * N
+        colorArray[0:i + 1] = ['#539165'] * (i + 1)
         display(arr, colorArray, swapCount,   comparisonCount)
         time.sleep(max_time - (speedInput() * max_time / 100))
 
-    colorArray = ['green'] * N
+    colorArray = ['#539165'] * N
     display(arr, colorArray, swapCount,   comparisonCount)
     colorArray = ['#539165'] * N
     display(arr, colorArray, swapCount,  comparisonCount)
