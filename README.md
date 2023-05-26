@@ -1,7 +1,7 @@
 ## Sorting-Algorithms-Visualization
 ## Sıralama Algoritmaları Görselleştirici
-tkinter kütüphanesini yüklemek için 'pip install tkinter'
-çalıştırmak için 'python mainage.py'
+tkinter kütüphanesini yüklemek için ´pip install tkinter´
+çalıştırmak için ´python mainage.py´
 
 Bu proje sıralama algoritmalarının çalışma şeklini gözlemlemek ve göstermek üzere geliştirilmiştir. 
 Kullanıcıların belirledikleri boyuttaki bir dizi kullanıcın seçtiği grafik şekli ve sıralama algoritma 
