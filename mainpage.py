@@ -224,7 +224,7 @@ def startSort():
     elapsed_time = e - s  # Geçen süreyi hesapla
 
     # Süreyi arayüzde göster
-    time_label = Label(outputCanvas, text=f"Geçen Süre: {elapsed_time:.4f} sn", fg='black', bg='#70A1D7',
+    time_label = Label(outputCanvas, text=f"Geçen Süre: {elapsed_time:.3f} sn", fg='black', bg='#70A1D7',
                        font=('Comic Sans MS', 13))
     outputCanvas.create_window(10,10, anchor='nw', window=time_label)
 
